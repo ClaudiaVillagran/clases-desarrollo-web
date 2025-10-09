@@ -1,7 +1,17 @@
 import { Box, Button, Stack, TextField } from '@mui/material'
 import React from 'react'
+import { ulid } from 'ulid'
 
 export const AgregarProducto = () => {
+
+
+    const [form, setForm] = React.useState(() =>({
+      id: ulid(),
+      nombre: '',
+      precio:  '',
+      imagen: '',
+      descripcion: '',
+    }))
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <h1>Registrar Producto</h1>

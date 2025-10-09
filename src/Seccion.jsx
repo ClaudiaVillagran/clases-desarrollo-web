@@ -7,7 +7,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { NavLink } from 'react-router-dom';
 import { DataZapatos } from './data/DataZapatos';
-export const Seccion = ({ items }) => {
+export const Seccion = ({ items, eliminarProducto }) => {
+
+
 
 
     const [open, setOpen] = React.useState(false);
@@ -16,6 +18,7 @@ export const Seccion = ({ items }) => {
 
     const idEditar = 'este es el boton editar'
     const handleOpen = (id) => {
+        eliminarProducto(id)
         console.log(id);
         setFinalId(id)
         setOpen(true)
@@ -36,10 +39,10 @@ export const Seccion = ({ items }) => {
                             <IconButton aria-label="delete" onClick={() => handleOpen(item.id)}>
                                 <DeleteIcon style={{ color: '#f00' }} />
                             </IconButton>
-                            <IconButton aria-label="delete" component={NavLink} to={`/editarProducto/${item.id}`}>
+                            <IconButton aria-label="delete" component={NavLink} to={`/editarProducto/${item.id}`} >
                                 <EditIcon style={{ color: '#f00' }} />
                             </IconButton>
-
+                            
 
                             <h2>{item.precio}</h2>
                             <p>{item.descripcion}</p>
