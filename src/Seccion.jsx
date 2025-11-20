@@ -10,7 +10,7 @@ import { DataZapatos } from './data/DataZapatos';
 export const Seccion = ({ items, eliminarProducto }) => {
 
 
-
+    // console.log(items.length < 1);
 
     const [open, setOpen] = React.useState(false);
     const [finalId, setFinalId] = React.useState('')
@@ -30,27 +30,31 @@ export const Seccion = ({ items, eliminarProducto }) => {
             <h1>Zapatería</h1>
             {/* <CarritoCompras /> */}
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', }}>
-                {items.map((item) => (
-                    <div key={item.id} className='contenedor_producto_1' style={{ display: 'flex', border: '2px solid #acb', flex: '1 1 360px', }}>
-                        <div style={{ width: "40%", height: "auto" }}>
-                            <img style={{ width: "100%", height: "100%" }} src={item.imagen} />
-                        </div>
-                        <div style={{ width: "60%", height: "auto", backgroundColor: '#555', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <IconButton aria-label="delete" onClick={() => handleOpen(item.id)}>
-                                <DeleteIcon style={{ color: '#f00' }} />
-                            </IconButton>
-                            <IconButton aria-label="delete" component={NavLink} to={`/editarProducto/${item.id}`} >
-                                <EditIcon style={{ color: '#f00' }} />
-                            </IconButton>
-                            
+                {!items ? 'No hay productos a mostrar' :
 
-                            <h2>{item.precio}</h2>
-                            <p>{item.descripcion}</p>
-                            <BotonBasico isDisabled={false} />
+                    items.map((item) => (
+                        <div key={item._id} className='contenedor_producto_1' style={{ display: 'flex', border: '2px solid #acb', flex: '1 1 360px', }}>
+                            <div style={{ width: "40%", height: "auto" }}>
+                                <img style={{ width: "100%", height: "100%" }} src={item.imagen} />
+                            </div>
+                            <div style={{ width: "60%", height: "auto", backgroundColor: '#555', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                <IconButton aria-label="delete" onClick={() => handleOpen(item._id)}>
+                                    <DeleteIcon style={{ color: '#f00' }} />
+                                </IconButton>
+                                <IconButton aria-label="delete" component={NavLink} to={`/editarProducto/${item._id}`} >
+                                    <EditIcon style={{ color: '#f00' }} />
+                                </IconButton>
 
+
+                                <h2>{item.precio}</h2>
+                                <p>{item.nombre}</p>
+                                <BotonBasico isDisabled={false} />
+
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+
+                }
             </div>
         </div>
 
